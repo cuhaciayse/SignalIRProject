@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SignalIR.DtoLayer\SignalIR.DtoLayer.csproj" />
     <ProjectReference Include="..\SignalIR.EntityLayer\SignalIR.EntityLayer.csproj" />
   </ItemGroup>
 
