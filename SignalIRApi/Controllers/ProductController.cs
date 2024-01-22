@@ -52,7 +52,8 @@ namespace SignalIRApi.Controllers
                 ImageUrl = createProductDto.ImageUrl,
                 Price = createProductDto.Price,
                 ProductName = createProductDto.ProductName,
-                ProductStatus = createProductDto.ProductStatus
+                ProductStatus = createProductDto.ProductStatus,
+                CategoryID = createProductDto.CategoryID
             });
             return Ok("Ürün bilgisi eklendi");
         }
@@ -80,6 +81,7 @@ namespace SignalIRApi.Controllers
                 ProductName = updateProductDto.ProductName,
                 ProductStatus = updateProductDto.ProductStatus,
                 ProductID = updateProductDto.ProductID,
+                CategoryID = updateProductDto.CategoryID    
             });
             return Ok("Ürün bilgisi güncellendi");
         }

@@ -2,11 +2,11 @@
 
 namespace SignalIRWebUI.ViewComponents.LayoutComponents
 {
-    public class _LayoutHeaderPartialComponent : ViewComponent
-    {
+	public class _LayoutSidebarPartialComponent:ViewComponent
+	{
 		public IViewComponentResult Invoke()
-        {
-            return View();
-        }
-    }
+		{
+			return View();	
+		}
+	}
 }

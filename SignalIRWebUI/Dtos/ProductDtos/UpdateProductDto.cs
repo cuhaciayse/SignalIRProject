@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SignalIR.DtoLayer.ProductDto
+﻿namespace SignalIRWebUI.Dtos.ProductDtos
 {
     public class UpdateProductDto
     {
@@ -16,4 +10,5 @@ namespace SignalIR.DtoLayer.ProductDto
         public bool ProductStatus { get; set; }
         public int CategoryID { get; set; }
     }
+
 }
