@@ -33,7 +33,7 @@ namespace SignalIRApi.Controllers
                 FooterDescription = createContactDto.FooterDescription,
                 Location = createContactDto.Location,
                 Mail = createContactDto.Mail,
-                PhoneNumber = createContactDto.PhoneNumber
+                Phone = createContactDto.Phone
             });
             return Ok("İletişim bilgisi eklendi");
         }
@@ -59,7 +59,7 @@ namespace SignalIRApi.Controllers
                 FooterDescription = updateContactDto.FooterDescription,
                 Location = updateContactDto.Location,
                 Mail = updateContactDto.Mail,
-                PhoneNumber = updateContactDto.PhoneNumber
+                Phone = updateContactDto.Phone
             });
             return Ok("İletişim bilgisi güncellendi");
         }

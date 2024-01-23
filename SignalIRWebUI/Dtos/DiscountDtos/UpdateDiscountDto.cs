@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SignalIR.DtoLayer.DiscountDto
+﻿namespace SignalIRWebUI.Dtos.DiscountDtos
 {
-    public class ResultDiscountDto
+    public class UpdateDiscountDto
     {
         public int DiscountID { get; set; }
         public string Title { get; set; }
