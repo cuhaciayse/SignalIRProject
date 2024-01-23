@@ -5,9 +5,22 @@ using SignalIR.BusinessLayer.Concrete;
 using SignalIR.DataAccessLayer.Abstract;
 using SignalIR.DataAccessLayer.Concrete;
 using SignalIR.DataAccessLayer.EntityFramework;
+using SignalIRApi.Hubs;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.AllowAnyHeader()
+        .AllowAnyMethod()
+        .SetIsOriginAllowed(host => true)
+        .AllowCredentials();
+    });
+});
+builder.Services.AddSignalR();
 
 builder.Services.AddDbContext<SignalIRContext>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
@@ -57,10 +70,13 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseCors("CorsPolicy");
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<SignalRHub>("/signalrhub");
 
 app.Run();
