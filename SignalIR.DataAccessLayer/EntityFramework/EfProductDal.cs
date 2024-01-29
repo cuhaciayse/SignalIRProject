@@ -44,5 +44,33 @@ namespace SignalIR.DataAccessLayer.EntityFramework
             var context = new SignalIRContext();    
             return context.Products.Where(x=>x.CategoryID==(context.Categories.Where(y=>y.CategoryName=="Hamburger").Select(z=>z.CategoryID).First())).Count();
         }
+
+        public string ProductNameByMaxPrice()
+        {
+            var context =new SignalIRContext();
+            var maxprice= context.Products.Max(x=>x.Price);
+            var productNameOfMaxPrice = context.Products.Where(x => x.Price == maxprice).Select(y => y.ProductName).FirstOrDefault();
+            return productNameOfMaxPrice;
+        }
+
+        public string ProductNameByMinPrice()
+        {
+            var context = new SignalIRContext();    
+            var minprice= context.Products.Min(x=>x.Price);
+            var productNameOfMinPrice= context.Products.Where(x=>x.Price== minprice).Select(y => y.ProductName).FirstOrDefault();
+            return productNameOfMinPrice;
+        }
+
+        public decimal ProductPriceAvg()
+        {
+            var context = new SignalIRContext();
+            return context.Products.Average(x => x.Price);
+        }
+
+        public decimal ProductAvgPriceByHamburger()
+        {
+            var context = new SignalIRContext();
+            return context.Products.Where(x => x.CategoryID == (context.Categories.Where(y=>y.CategoryName=="Hamburger").Select(z=>z.CategoryID).FirstOrDefault())).Average(x=>x.Price);    
+        }
     }
 }

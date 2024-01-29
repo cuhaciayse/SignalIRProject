@@ -26,21 +26,48 @@ namespace SignalIRApi.Controllers
             var value =_productService.TGetListAll();
             return Ok(value);
         }
+
         [HttpGet("ProductCountByHamburger")]
         public IActionResult ProductCountByHamburger() 
         {
            return Ok(_productService.TProductCountByCategoryNameHamburger());  
         }
+
         [HttpGet("ProductCountByDrink")]
         public IActionResult ProductCountByDrink()
         {
             return Ok(_productService.TProductCountByCategoryNameDrink());
         }
+
         [HttpGet("ProductCount")]
         public IActionResult ProductCount()
         {
             return Ok(_productService.TProductCount());
         }
+
+        [HttpGet("ProductPriceAvg")]
+        public IActionResult ProductPriceAvg()
+        {
+            return Ok(_productService.TProductPriceAvg());
+        }
+
+        [HttpGet("ProductNameByMaxPrice")]
+        public IActionResult ProductNameByMaxPrice()
+        {
+            return Ok(_productService.TProductNameByMaxPrice());    
+        }
+
+        [HttpGet("ProductNameByMinPrice")]
+        public IActionResult ProductNameByMinPrice()
+        {
+            return Ok(_productService.TProductNameByMinPrice());
+        }
+        [HttpGet("ProductAvgPriceByHamburger")]
+        public IActionResult ProductAvgPriceByHamburger()
+        {
+            return Ok(_productService.TProductAvgPriceByHamburger());
+        }
+
         [HttpGet("ProductListWithCategory")]   
         public IActionResult ProductListWithCategory()
         {
@@ -72,6 +99,7 @@ namespace SignalIRApi.Controllers
             });
             return Ok("Ürün bilgisi eklendi");
         }
+
         [HttpDelete("{id}")]
         public IActionResult DeleteProduct(int id)
         {
@@ -79,12 +107,14 @@ namespace SignalIRApi.Controllers
             _productService.TDelete(value);
             return Ok("Ürün bilgisi silindi");
         }
+
         [HttpGet("{id}")]
         public IActionResult GetProduct(int id)
         {
             var value = _productService.TGetByID(id);
             return Ok(value);
         }
+
         [HttpPut]
         public IActionResult UpdateProduct(UpdateProductDto updateProductDto)
         {

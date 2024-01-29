@@ -1,4 +1,5 @@
-﻿using System.Security.AccessControl;
+﻿using SignalIR.EntityLayer.Entities;
+using System.Security.AccessControl;
 
 namespace SignalIRApi.EntityLayer.Entities
 {
@@ -12,5 +13,6 @@ namespace SignalIRApi.EntityLayer.Entities
         public bool ProductStatus { get; set; }
         public int CategoryID { get; set; }
         public Category Category { get; set; }
+        public List<OrderDetail> OrderDetails { get; set; }
     }
 }
