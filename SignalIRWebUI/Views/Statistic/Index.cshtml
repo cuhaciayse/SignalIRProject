@@ -17,7 +17,7 @@
 
             $(document).ready(() => {
 
-                var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7186/SignalRHub").build();
+                var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7254/SignalRHub").build();
                 $("#connstatus").text(connection.state);
                 connection.start().then(() => {
                     $("#connstatus").text(connection.state);
@@ -39,8 +39,8 @@
                     $("#activecategorycount").text(value3);
                 });
 
-                connection.on("ReceivePassiveCategoryCount", (value4) => {
-                    $("#passivecategorycount").text(value4);
+                connection.on("ReceivePasiveCategoryCount", (value4) => {
+                    $("#pasivecategorycount").text(value4);
                 });
 
                 connection.on("ReceiveProductCountByCategoryNameHamburger", (value5) => {
@@ -166,7 +166,7 @@
                             <div class="col-7 d-flex align-items-center">
                                 <div class="numbers">
                                     <p class="card-category">Pasif Kategori</p>
-                                    <h4 class="card-title" id="passivecategorycount"></h4>
+                                    <h4 class="card-title" id="pasivecategorycount"></h4>
                                 </div>
                             </div>
                         </div>
