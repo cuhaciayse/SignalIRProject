@@ -28,6 +28,11 @@ namespace SignalIR.BusinessLayer.Concrete
             _basketDal.Delete(entity);
         }
 
+        public List<Basket> TGetBasketByMenuTableNumber(int id)
+        {
+            return _basketDal.GetBasketByMenuTableNumber(id);
+        }
+
         public Basket TGetByID(int id)
         {
             return _basketDal.GetByID(id);
