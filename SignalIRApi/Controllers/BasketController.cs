@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SignalIR.BusinessLayer.Abstract;
+using SignalIR.DataAccessLayer.Concrete;
+using SignalIRApi.Models;
 
 namespace SignalIRApi.Controllers
 {
@@ -15,11 +19,34 @@ namespace SignalIRApi.Controllers
             _basketService = basketService;
         }
 
-        [HttpGet]   
+        [HttpGet]
         public IActionResult GetBasketByTableNumber(int id)
         {
             var values = _basketService.TGetBasketByMenuTableNumber(id);
             return Ok(values);
+        }
+        [HttpGet("BasketListByMenuTableWithProductName")]
+        public IActionResult BasketListByMenuTableWithProductName(int id)
+        {
+            using var context = new SignalIRContext();
+            var values = context.Baskets.Include(x => x.Product).Where(y => y.MenuTableID == id).Select(z => new ResultBasketListWithProducts
+            {
+                BasketID = z.BasketID,
+                Count = z.Count,
+                MenuTableID = z.MenuTableID,
+                Price = z.Price,
+                ProductID = z.ProductID,
+                TotalPrice = z.TotalPrice,
+                ProductName = z.Product.ProductName
+            }).ToList();
+            return Ok(values);
+        }
+        [HttpDelete("{id}")]
+        public IActionResult DeleteBasket(int id)
+        {
+            var values = _basketService.TGetByID(id);
+            _basketService.TDelete(values);
+            return Ok("Sepetteki seçilen ürün silindi");
         }
     }
 }
