@@ -51,7 +51,7 @@ namespace SignalIR.DataAccessLayer.Migrations
 
                     b.HasIndex("ProductID");
 
-                    b.ToTable("Basket");
+                    b.ToTable("Baskets");
                 });
 
             modelBuilder.Entity("SignalIR.EntityLayer.Entities.Contact", b =>

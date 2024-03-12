@@ -13,7 +13,7 @@ namespace SignalIR.DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=.; initial Catalog=SignalIRDb; integrated security=true");
+            optionsBuilder.UseSqlServer("Server=.; initial Catalog=SignalRDb; integrated security=true");
         }
         public DbSet<About> Abouts { get; set; }
         public DbSet<Booking> Bookings { get; set; }
