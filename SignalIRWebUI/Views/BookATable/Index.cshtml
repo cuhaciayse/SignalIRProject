@@ -1,4 +1,4 @@
-﻿
+﻿@model CreateBookingDto
 @{
     Layout = null;
 }
@@ -16,52 +16,59 @@
         <div class="container">
             <div class="heading_container">
                 <h2>
-                    Book A Table
+                    Rezervasyon Yapın
                 </h2>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form_container">
-                        <form action="">
+                        <form method="Post" onsubmit="return Validate()">
                             <div>
-                                <input type="text" class="form-control" placeholder="Your Name" />
+                                <input type="Name" class="form-control" placeholder="Adınız Soyadınız" asp-for="Name"/>
                             </div>
                             <div>
-                                <input type="text" class="form-control" placeholder="Phone Number" />
+                                <input type="Phone" class="form-control" placeholder="Telefon" asp-for="Phone" />
                             </div>
                             <div>
-                                <input type="email" class="form-control" placeholder="Your Email" />
+                                <input type="Mail" class="form-control" placeholder="Mail Adres" asp-for="Mail" />
                             </div>
                             <div>
-                                <select class="form-control nice-select wide">
+                                <select asp-for="PersonCount" class="form-control nice-select wide">
                                     <option value="" disabled selected>
-                                        How many persons?
+                                        Kaç Kişisiniz?
                                     </option>
-                                    <option value="">
-                                        2
-                                    </option>
-                                    <option value="">
-                                        3
-                                    </option>
-                                    <option value="">
-                                        4
-                                    </option>
-                                    <option value="">
-                                        5
-                                    </option>
+                                        <option value="1">
+                                            1
+                                        </option>
+                                        <option value="2">
+                                            2
+                                        </option>
+                                        <option value="3">
+                                            3
+                                        </option>
+                                        <option value="4">
+                                            4
+                                        </option>
+                                        <option value="5">
+                                            5
+                                        </option>
+                                        <option value="6">
+                                            6++
+                                        </option>
                                 </select>
                             </div>
                             <div>
-                                <input type="date" class="form-control">
+                                <input type="date" class="form-control" asp-for="Date">
                             </div>
                             <div class="btn_box">
                                 <button>
-                                    Book Now
+                                    Rezervasyon Yap
                                 </button>
                             </div>
                         </form>
                     </div>
                 </div>
+
                 <div class="col-md-6">
                     <div class="map_container ">
                         <div id="googleMap"></div>
@@ -70,6 +77,23 @@
             </div>
         </div>
     </section>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function Validate() {
+            var name = document.getElementById('Name').value;
+            var phone = document.getElementById('Phone').value;
+            var mail = document.getElementById('Mail').value;
+            var person = document.getElementById('PersonCount').value;
+            var date = document.getElementById('Date').value;
+
+            if (name == '' || phone == '' || mail == '' || person == '' || date == '') {
+                swal("Lütfen tüm bilgileri doldurunuz.");
+                return false;
+            }
+            return true;
+        }
+    </script>
    
     @await Component.InvokeAsync("_UILayoutFooterComponentPartial")
    
