@@ -56,7 +56,7 @@
                                 <td class="align-middle">@item.Count</td>
                                 <td class="align-middle">@item.Price</td>
                                 <td class="align-middle">@item.TotalPrice</td>
-                                <td class="align-middle btn-delete"><a class="btn btn-sm btn-danger" href="/Baskets/DeleteBasket/@item.BasketID"><i class="fa fa-times"></i></a></td>
+                                <td class="align-middle btn-delete"><a class="btn btn-sm btn-danger" href="/Basket/DeleteBasket/@item.BasketID javascript:void(0);" onclick="deleteid('@item.BasketID')"><i class="fa fa-times"></i></a></td>
                             </tr>
                         </tbody>
                     }
@@ -97,6 +97,43 @@
             </div>
         </div>
     </div>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function deleteid(value) {
+            var id = value;
+            swal({
+                title: "Silmek istediğinize emin misiniz?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((deleteid) => {
+                    if (deleteid) {
+                        $.ajax({
+                            url:'/Basket/DeleteBasket/' + id,
+                            type: 'POST',
+                            success: function () {
+                                swal("Silindi!", {
+                                    icon: "success",
+                                }).then(() => {
+                                    // Silme işlemi başarılı olduğunda sayfayı yenileme
+                                    location.reload();
+                                });
+                            },
+                            error: function (xhr) {
+                                swal("Hata!", "Silme işlemi başarısız oldu.", "error");
+                            }
+                        });
+                    } else {
+                        swal("İptal edildi!");
+                    }
+                });
+        }
+    </script>
+
+
+
 
     @await Component.InvokeAsync("_UILayoutFooterComponentPartial")
 
