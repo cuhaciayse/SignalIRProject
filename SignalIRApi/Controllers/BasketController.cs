@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SignalIR.BusinessLayer.Abstract;
 using SignalIR.DataAccessLayer.Concrete;
+using SignalIR.DtoLayer.AboutDto;
+using SignalIR.DtoLayer.BasketDto;
+using SignalIR.EntityLayer.Entities;
 using SignalIRApi.Models;
 
 namespace SignalIRApi.Controllers
@@ -47,6 +50,21 @@ namespace SignalIRApi.Controllers
             var values = _basketService.TGetByID(id);
             _basketService.TDelete(values);
             return Ok("Sepetteki seçilen ürün silindi");
+        }
+
+        [HttpPost]
+        public IActionResult CreateBasket(CreateBasketDto createBasketDto)
+        {
+            using var context = new SignalIRContext();
+            _basketService.TAdd(new Basket()
+            {
+                ProductID = createBasketDto.ProductID,
+                Count = 1,
+                MenuTableID = 4,
+                Price = context.Products.Where(x => x.ProductID == createBasketDto.ProductID).Select(y => y.Price).FirstOrDefault(),
+                TotalPrice = 0
+            });
+            return Ok();
         }
     }
 }

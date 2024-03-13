@@ -12,28 +12,28 @@
 
     @await Component.InvokeAsync("_MenuNavbarComponentPartial")
 
+    <section class="food_section layout_padding">
+        <div class="container">
+            <div class="heading_container heading_center">
+                <h2>
+                    Menümüz
+                </h2>
+            </div>
 
-  <section class="food_section layout_padding">
-    <div class="container">
-      <div class="heading_container heading_center">
-        <h2>
-          Menümüz
-        </h2>
-      </div>
+            <ul class="filters_menu">
+                <li class="active" data-filter="*">Tüm Ürünler</li>
+                <li data-filter=".burger">Hamburger</li>
+                <li data-filter=".pizza">Pizza</li>
+                <li data-filter=".pasta">Makarna</li>
+                <li data-filter=".fries">Kızartmalar</li>
+                <li data-filter=".fries">Salatalar</li>
+                <li data-filter=".fries">İçecekler</li>
+                <li data-filter=".fries">Tatlılar</li>
+            </ul>
 
-      <ul class="filters_menu">
-        <li class="active" data-filter="*">Tüm Ürünler</li>
-        <li data-filter=".burger">Hamburger</li>
-        <li data-filter=".pizza">Pizza</li>
-        <li data-filter=".pasta">Makarna</li>
-        <li data-filter=".pasta">Salatalar</li>
-        <li data-filter=".pasta">Tatlılar</li>
-        <li data-filter=".fries">İçecekler</li>
-      </ul>
-
-      <div class="filters-content">
-        <div class="row grid">
-                    @foreach(var item in Model)
+            <div class="filters-content">
+                <div class="row grid">
+                    @foreach (var item in Model)
                     {
                         <div class="col-sm-6 col-lg-4 all pizza">
                             <div class="box">
@@ -50,9 +50,9 @@
                                         </p>
                                         <div class="options">
                                             <h6>
-                                                @item.Price ₺
+                                                @item.Price₺
                                             </h6>
-                                            <a href="javascript:void(0);" onclick="showproductid('@item.ProductID')">
+                                            <a href="#" onclick="showproductid(@item.ProductID)">
                                                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                                                 <g>
                                                 <g>
@@ -112,40 +112,36 @@
                             </div>
                         </div>
                     }
-          
+                </div>
+            </div>
+            <div class="btn-box">
+                <a href="/Baskets/Index/">
+                    Sepete Git
+                </a>
+            </div>
         </div>
-      </div>
-      <div class="btn-box">
-        <a href="">
-          View More
-        </a>
-      </div>
-    </div>
-  </section>
+    </section>
 
- 
     @await Component.InvokeAsync("_UILayoutFooterComponentPartial")
- 
+
     @await Component.InvokeAsync("_UILayoutScriptComponentPartial")
 
     <script>
         function showproductid(value) {
             var id = value;
             $.ajax({
-                type: 'post',
+                type: 'POST',
                 data: { item: id },
+                url: "/Menu/AddBasket/" + id,
                 contentType: 'json',
                 success: function () {
-                    // alert('Tıkladığınız Ürün ID Değeri' + id);
-                    swal("Seçilen Ürün ID :" + id, "Sepete başarıyla eklendi!", "success");   
-                    return false;
+                    swal("Seçilen Ürün ID:" + id, "Seçtiğiniz Ürün Sepete Eklendi!", "success");
+
                 }
             });
-        }
+        };
     </script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 </body>
 
 </html>
-
