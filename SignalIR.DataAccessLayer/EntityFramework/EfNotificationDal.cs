@@ -1,4 +1,5 @@
-﻿using SignalIR.DataAccessLayer.Abstract;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using SignalIR.DataAccessLayer.Abstract;
 using SignalIR.DataAccessLayer.Concrete;
 using SignalIR.DataAccessLayer.Repositories;
 using SignalIR.EntityLayer.Entities;
@@ -18,13 +19,16 @@ namespace SignalIR.DataAccessLayer.EntityFramework
 
 		public List<Notification> GetAllNotificationByFalse()
 		{
-			throw new NotImplementedException();
+			var context = new SignalIRContext();
+			return context.Notifications.Where(x=>x.Status==false).ToList();	
+			
 		}
 
 		public int NotificationCountByStatusFalse()
 		{
-			throw new NotImplementedException();
-		}
+            var context = new SignalIRContext();
+			return context.Notifications.Where(y => y.Status == false).Count();
+        }
 
 		public void NotificationStatusChangeToFalse(int id)
 		{

@@ -6,6 +6,7 @@ using SignalIR.DataAccessLayer.Abstract;
 using SignalIR.DataAccessLayer.Concrete;
 using SignalIR.DataAccessLayer.EntityFramework;
 using SignalIRApi.Hubs;
+using SignalR.BusinessLayer.Concrete;
 using System.Reflection;
 using System.Text.Json.Serialization;
 
@@ -70,6 +71,10 @@ builder.Services.AddScoped<ISliderDal, EfSliderDal>();
 
 builder.Services.AddScoped<IBasketService, BasketManager>();
 builder.Services.AddScoped<IBasketDal, EfBasketDal>();
+
+builder.Services.AddScoped<INotificationService, NotificationManager>();
+builder.Services.AddScoped<INotificationDal, EfNotificationDal>();
+
 
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
