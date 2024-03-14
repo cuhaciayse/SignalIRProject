@@ -32,12 +32,24 @@ namespace SignalIR.DataAccessLayer.EntityFramework
 
 		public void NotificationStatusChangeToFalse(int id)
 		{
-			throw new NotImplementedException();
+			var context = new SignalIRContext();
+			var values = context.Notifications.FirstOrDefault(y => y.NotificationID == id);
+			if(values != null)
+			{
+				values.Status = false;
+				context.SaveChanges();
+			}
 		}
 
 		public void NotificationStatusChangeToTrue(int id)
 		{
-			throw new NotImplementedException();
+			var context= new SignalIRContext();
+			var values = context.Notifications.FirstOrDefault(x => x.NotificationID == id);
+			if( values != null)
+			{
+				values.Status = true;
+				context.SaveChanges();
+			}
 		}
 	}
 }
