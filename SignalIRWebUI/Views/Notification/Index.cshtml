@@ -40,16 +40,25 @@
 										<th>@count</th>
 										<td>@item.Description</td>
 										<td>@item.Date</td>
-										<td>@item.Status</td>
-										<td><a href="/Notifications/DeleteNotification/@item.NotificationID" class="btn btn-outline-danger">Sil</a></td>
-										<td><a href="/Notifications/UpdateNotification/@item.NotificationID" class="btn btn-outline-success">Güncelle</a></td>
-										<td><a href="/Notifications/NotificationStatusChangeToTrue/@item.NotificationID" class="btn btn-outline-warning">Okundu</a></td>
-										<td><a href="/Notifications/NotificationStatusChangeToFalse/@item.NotificationID" class="btn btn-outline-secondary">Okunmadı</a></td>
+										<td>
+											@if(item.Status == true)
+											{
+												<span class="text-success">Mesaj Okundu</span>
+											}
+											else
+											{
+												<span class="text-warning">Mesaj Okunmadı</span>
+											}
+										</td>
+										<td><a href="/Notification/DeleteNotification/@item.NotificationID" class="btn btn-outline-danger">Sil</a></td>
+										<td><a href="/Notification/UpdateNotification/@item.NotificationID" class="btn btn-outline-success">Güncelle</a></td>
+										<td><a href="/Notification/NotificationStatusChangeToTrue/@item.NotificationID" class="btn btn-outline-warning">Okundu</a></td>
+										<td><a href="/Notification/NotificationStatusChangeToFalse/@item.NotificationID" class="btn btn-outline-secondary">Okunmadı</a></td>
 									</tr>
 								}
 							</tbody>
 						</table>
-						<a href="/Notifications/CreateNotification/" class="btn btn-outline-primary">Yeni Bildirim Girişi</a>
+						<a href="/Notification/CreateNotification/" class="btn btn-outline-primary">Yeni Bildirim Girişi</a>
 					</div>
 				</div>
 			</div>

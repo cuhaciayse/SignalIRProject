@@ -89,7 +89,9 @@ namespace SignalIRApi.Controllers
 				Icon = updateNotificationDto.Icon,
 				Status = updateNotificationDto.Status,
 				Type = updateNotificationDto.Type,
+				Date = updateNotificationDto.Date
 			};
+			_notificationService.TUpdate(notification);
 			return Ok("Güncelleme yapıldı");
 		}
 	}
