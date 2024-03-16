@@ -92,7 +92,7 @@ namespace SignalIRWebUI.Controllers
 		public async Task<IActionResult> TableListByStatus()
 		{
 			var client = _httpClientFactory.CreateClient();
-			var responseMessage = await client.GetAsync("https://localhost:7186/api/MenuTable");
+			var responseMessage = await client.GetAsync("https://localhost:7254/api/MenuTable");
 			if(responseMessage.IsSuccessStatusCode)
 			{
 				var jsonData = await responseMessage.Content.ReadAsStringAsync();
