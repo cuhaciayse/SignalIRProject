@@ -1,4 +1,13 @@
+using Microsoft.AspNetCore.Authorization;
+using SignalIR.DataAccessLayer.Concrete;
+using SignalIR.EntityLayer.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var requireAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+
+builder.Services.AddDbContext<SignalIRContext>();
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<SignalIRContext>();
 
 // Add services to the container.
 builder.Services.AddHttpClient();   

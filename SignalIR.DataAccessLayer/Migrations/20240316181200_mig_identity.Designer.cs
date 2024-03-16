@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SignalIR.DataAccessLayer.Concrete;
 
@@ -11,9 +12,10 @@ using SignalIR.DataAccessLayer.Concrete;
 namespace SignalIR.DataAccessLayer.Migrations
 {
     [DbContext(typeof(SignalIRContext))]
-    partial class SignalIRContextModelSnapshot : ModelSnapshot
+    [Migration("20240316181200_mig_identity")]
+    partial class mig_identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
