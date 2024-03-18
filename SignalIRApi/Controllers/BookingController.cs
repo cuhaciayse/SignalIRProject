@@ -65,5 +65,18 @@ namespace SignalIRApi.Controllers
             var value = _bookingService.TGetByID(id);
             return Ok(value);
         }
-    }
+
+		[HttpGet("BookingStatusApproved/{id}")]
+		public IActionResult BookingStatusApproved(int id)
+		{
+			_bookingService.BookingStatusApproved(id);
+			return Ok("Rezervasyon Açıklaması Değiştirildi");
+		}
+		[HttpGet("BookingStatusCancelled/{id}")]
+		public IActionResult BookingStatusCancelled(int id)
+		{
+			_bookingService.BookingStatusCancelled(id);
+			return Ok("Rezervasyon Açıklaması Değiştirildi");
+		}
+	}
 }
