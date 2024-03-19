@@ -94,6 +94,6 @@ namespace SignalIRWebUI.Controllers
 			await client.GetAsync($"https://localhost:7254/api/Discount/ChangeStatusToTrue/{id}");
 			return RedirectToAction("Index");
 		}
-
+  
 	}
 }
