@@ -19,11 +19,18 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
+    <PackageReference Include="QrCode.Net" Version="0.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SignalIR.DataAccessLayer\SignalIR.DataAccessLayer.csproj" />
     <ProjectReference Include="..\SignalIR.EntityLayer\SignalIR.EntityLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="QRCoder">
+      <HintPath>..\..\QRCoder.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
